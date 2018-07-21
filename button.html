@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+   <title> Naeun Kim </title>
+  </head>
+  <body>
+    <button id="clickme">Click Me</button>
+    <br>
+    Total number of clicks: 
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <div id="here"></div>
+    <div id="number">
+      <script>
+        $.ajax({
+          method: "GET",
+          url: "http://localhost:8080/what/counter.php",
+          data: {it: "real"},
+          success: function (msg) {
+             $("#here").html(msg);
+          }
+        })
+      </script>
+    </div>
+    <script>
+      $(document).ready(function(){
+    	 $("#clickme").click(function(){
+          $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/what/counter.php",
+            data: {count: "1"},
+            success: function (msg) {
+             $("#here").html(msg);
+            }
+           });
+        });
+      });
+    </script>
+  </body>
+</html>
